@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.karolis.futbolfx.SecondaryController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.karolis.futbolfx.addTeamController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" text="AÑADIR EQUIPO" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Nombre del equipo" textAlignment="CENTER" />
-      <TextField />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Jugados" textAlignment="CENTER" />
-      <TextField />
+      <TextField fx:id="teamName" />
+      <Label  alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Jugados" textAlignment="CENTER" />
+      <TextField fx:id="playedMatches" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Ganados" textAlignment="CENTER" />
-      <TextField />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Empatados" textAlignment="CENTER" />
-      <TextField />
-        <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="AÑADIR" />
+      <TextField fx:id="winnedMatches"/>
+      <Label  alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Empatados" textAlignment="CENTER" />
+      <TextField fx:id="drawMatches"/>
+        <Button fx:id="add" onAction="#add" text="Añadir" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

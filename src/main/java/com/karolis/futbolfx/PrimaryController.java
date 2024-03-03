@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 public class PrimaryController {
 
+    /**
+     * This metod will throw a Pop Up when you click the "Añadir Equipo" button and will ask us info about the team
+     * @throws IOException 
+     */
     @FXML
     private void addButton() throws IOException {
         // Cargar el archivo FXML
