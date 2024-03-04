@@ -1,3 +1,4 @@
+package com.karolis.futbolfx;
 /** 
  * Clase FicheroFutbol
  * 
@@ -7,7 +8,7 @@
 
 import java.io.*;
 
-class FicheroFutbol {
+class SoccerFile {
 
     private final String NOMBRE_FICH_DATOS = "liga.txt";  // Nombre del fichero de datos
     public final int MAX_EQUIPOS = 20;                    // Número máximo de equipos en la liga
