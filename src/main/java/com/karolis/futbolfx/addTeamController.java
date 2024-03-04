@@ -7,6 +7,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 public class addTeamController {
+    private PrimaryController primaryController;
+    
+    public void setPrimaryController(PrimaryController primaryController) {
+        this.primaryController = primaryController;
+    }
+    
     @FXML
     private TextField teamName, playedMatches, winnedMatches, drawMatches ;
     
@@ -78,6 +84,8 @@ private void add() throws IOException {
             alert.setTitle("Equipo añadido!");
             alert.setHeaderText(null);
             alert.setContentText("Equipo añadido con éxito!");
+            
+            PrimaryController.getInstance().refreshTable();
             // Mostrar la alerta como un pop-up
             alert.showAndWait();
         } else {
@@ -89,5 +97,4 @@ private void add() throws IOException {
         }
     }
 }
-
 }

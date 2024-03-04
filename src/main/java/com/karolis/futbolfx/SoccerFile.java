@@ -30,7 +30,7 @@ class SoccerFile {
         int resultado;
         try {
             FileWriter f = new FileWriter(NOMBRE_FICH_DATOS, true);  // Poniendo "true" añade datos al final
-            f.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + "\n");
+            f.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + ";\n");
             f.close();
             resultado = 0;
         }

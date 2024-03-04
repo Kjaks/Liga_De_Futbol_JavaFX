@@ -36,14 +36,14 @@
             <Insets bottom="3.0" />
          </padding>
       </Label>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+      <TableView fx:id="teamTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
         <columns>
-          <TableColumn prefWidth="268.0" text="NOMBRE DEL EQUIPO" />
-          <TableColumn minWidth="0.0" prefWidth="177.0" text="PARTIDOS JUGADOS" />
-            <TableColumn minWidth="0.0" prefWidth="182.0" text="PARTIDOS GANADOS" />
-            <TableColumn minWidth="0.0" prefWidth="195.0" text="PARTIDOS EMPATADOS" />
-            <TableColumn minWidth="0.0" prefWidth="173.0" text="PARTIDOS PERDIDOS" />
-            <TableColumn minWidth="0.0" prefWidth="204.0" text="PUNTUACION" />
+          <TableColumn fx:id="nameCol" prefWidth="268.0" text="NOMBRE DEL EQUIPO" />
+          <TableColumn fx:id="matchesPlayedCol" minWidth="0.0" prefWidth="177.0" text="PARTIDOS JUGADOS" />
+            <TableColumn fx:id="matchesWonCol" minWidth="0.0" prefWidth="182.0" text="PARTIDOS GANADOS" />
+            <TableColumn fx:id="matchesDrawnCol" minWidth="0.0" prefWidth="195.0" text="PARTIDOS EMPATADOS" />
+            <TableColumn fx:id="matchesLostCol" minWidth="0.0" prefWidth="173.0" text="PARTIDOS PERDIDOS" />
+            <TableColumn fx:id="pointsCol" minWidth="0.0" prefWidth="204.0" text="PUNTUACION" />
         </columns>
          <GridPane.margin>
             <Insets bottom="40.0" left="40.0" right="40.0" />

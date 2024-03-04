@@ -1,5 +1,6 @@
 com/karolis/futbolfx/addTeamController.class
 module-info.class
+com/karolis/futbolfx/Team.class
 com/karolis/futbolfx/App.class
 com/karolis/futbolfx/PrimaryController.class
 com/karolis/futbolfx/SoccerFile.class
