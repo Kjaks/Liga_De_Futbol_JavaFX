@@ -218,6 +218,7 @@ class SoccerFile {
             int puntos[] = new int[MAX_EQUIPOS];
             for (int i = 0; i < datos.length; i++) {
                 if (datos[i] != null) {
+                    datos[i] = datos[i].substring(0, datos[i].length() - 1);
                     puntos[i] = Integer.parseInt(datos[i].split(";")[5]);
                 }
                 else {
@@ -228,7 +229,7 @@ class SoccerFile {
             // Ordenamos el array de puntos con el método de la burbuja.
             // Cada vez que intercambiemos dos posiciones, intercambiaremos también el array con todos los datos
             for (int i = 0; i < datos.length; i++) {
-                for (int j = i; j < datos.length - 1; j++) {
+                for (int j = 0; j < datos.length - i - 1; j++) { // corrección aquí
                     if (puntos[j] < puntos[j+1]) {
                         // Intercambiamos los puntos
                         int aux = puntos[j];
@@ -242,12 +243,13 @@ class SoccerFile {
                 }
             }
 
+
             // Escribimos el array de datos ordenados en liga.txt, sustituyendo los datos antiguos
             try {
                 FileWriter f = new FileWriter(NOMBRE_FICH_DATOS);
                 for (int i = 0; i < datos.length; i++) {
                     if (datos[i] != null) {
-                        f.write(datos[i] + "\n");
+                        f.write(datos[i] + ";\n");
                     }
                 }
                 result = 0;
