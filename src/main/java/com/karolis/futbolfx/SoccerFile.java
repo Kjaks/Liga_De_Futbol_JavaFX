@@ -77,7 +77,8 @@ class SoccerFile {
             FileReader f = new FileReader(NOMBRE_FICH_DATOS);
             BufferedReader br = new BufferedReader(f);
             while ((linea = br.readLine()) != null) {
-                if (linea.contains(nombreEq)) {
+                String[] teamInfo = linea.split(";");
+                if (teamInfo[0].equals(nombreEq)) {
                     encontrado = true;
                     break;
                 }

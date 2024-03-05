@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.karolis.futbolfx.searchTeamController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" text="BUSCAR EQUIPO" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="190.0" text="Introduce el nombre del equipo que quieras buscar" textAlignment="CENTER" wrapText="true" />
+      <TextField fx:id="SearchTeamName" />
+        <Button onAction="#search" text="Añadir" />
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

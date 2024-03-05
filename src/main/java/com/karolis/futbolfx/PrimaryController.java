@@ -82,8 +82,7 @@ public class PrimaryController {
             data.add(new Team(name, matchesPlayed, matchesWon, matchesDrawn, matchesLost, points));
 
         }
-        
-        
+                
         teamTable.setItems(data);
     }
     /**
@@ -94,6 +93,23 @@ public class PrimaryController {
     private void addButton() throws IOException {
         // Cargar el archivo FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addTeam.fxml"));
+        Parent root = loader.load();
+        
+        // Crear la escena
+        Scene scene = new Scene(root);
+        
+        // Obtener el escenario principal
+        Stage stage = new Stage();
+        
+        // Establecer la escena en el escenario principal y mostrarlo
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void searchButton() throws IOException {
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("searchTeam.fxml"));
         Parent root = loader.load();
         
         // Crear la escena
