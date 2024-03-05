@@ -25,15 +25,21 @@ public class searchTeamController {
     
     teamText = dataFile.get(name);
     
-    team = teamText.split(";");
-    
-    if(teamText == null){
+    if (name.equals("")){
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText("Escribe el nombre de un equipo!");
+        // Mostrar la alerta como un pop-up
+        alert.showAndWait();
+    }
+    else if(teamText == null){    
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("El equipo " + name + " no existe!");
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
     } else{
+        team = teamText.split(";");
         alert.setTitle("Informacion Equipo");
         alert.setHeaderText(null);
         alert.setContentText(

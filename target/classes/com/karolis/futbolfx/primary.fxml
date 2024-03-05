@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -51,25 +53,46 @@
             <Insets bottom="40.0" left="40.0" right="40.0" />
          </GridPane.margin>
       </TableView>
-      <Button mnemonicParsing="false" onAction="#addButton" text="Añadir Equipo" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Button mnemonicParsing="false" onAction="#addButton" prefHeight="10.0" prefWidth="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
          <GridPane.margin>
-            <Insets top="40.0" />
+            <Insets bottom="3.0" right="162.0" />
          </GridPane.margin>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Añadir.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button onAction="#searchButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" text="Buscar Equipo" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#searchButton" prefHeight="10.0" prefWidth="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
          <GridPane.margin>
-            <Insets bottom="40.0" />
+            <Insets bottom="3.0" right="110.0" />
          </GridPane.margin>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Buscar.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <MenuButton mnemonicParsing="false" text="Opciones" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+      <MenuButton mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
         <items>
-          <MenuItem mnemonicParsing="false" text="Ordenar de mayor a menor" />
+          <MenuItem mnemonicParsing="false" text="Ordenar de mayor a menor" onAction="#sortTable"/>
           <MenuItem mnemonicParsing="false" text="Borrar Equipo" />
             <MenuItem mnemonicParsing="false" text="Modificar Equipo" />
         </items>
          <GridPane.margin>
             <Insets bottom="3.0" right="40.0" />
          </GridPane.margin>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Opciones.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </MenuButton>
    </children>
 </GridPane>

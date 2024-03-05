@@ -123,6 +123,13 @@ public class PrimaryController {
         stage.show();
     }
     
+    @FXML
+    private void sortTable() throws IOException{
+    clearData();
+    dataFile.sort();
+    refreshTable();
+    }
+    
     public void clearData() {
     data.clear();
     }
