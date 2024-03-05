@@ -8,22 +8,27 @@ import javafx.scene.control.TextField;
  *
  * @author kjaks
  */
-public class searchTeamController {
-    SoccerFile dataFile = new SoccerFile();
+public class deleteTeamController {
+     private PrimaryController primaryController;
+    
+    public void setPrimaryController(PrimaryController primaryController) {
+        this.primaryController = primaryController;
+    }
+     SoccerFile dataFile = new SoccerFile();
     
     @FXML
-    private TextField SearchTeamName;
+    private TextField deleteTeamName;
     private String name, teamText;
-    private String[] team;
+    int result;
     
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML
-    private void search(){    
+    private void delete(){    
     
-    name = SearchTeamName.getText();
+    name = deleteTeamName.getText();
     
-    teamText = dataFile.get(name);
+    result = dataFile.delete(name);
     
     if (name.equals("")){
         alert.setTitle("ERROR");
@@ -32,24 +37,18 @@ public class searchTeamController {
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
     }
-    else if(teamText == null){    
+    else if(result == -1){    
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("El equipo " + name + " no existe!");
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
     } else{
-        team = teamText.split(";");
-        SearchTeamName.clear();
-        alert.setTitle("Informacion Equipo");
+        deleteTeamName.clear();
+        PrimaryController.getInstance().refreshTable();
+        alert.setTitle("Borrado completado!");
         alert.setHeaderText(null);
-        alert.setContentText(
-                "Nombre del equipo: " + team[0] 
-                + "\nPartidos Jugados: " + team[1] 
-                + "\nPartidos Ganados: " + team[2] 
-                + "\nPartidos Empatados: " + team[3] 
-                + "\nPartidos perdidos: " + team[4] 
-                + "\nPuntos: " + team[5]);
+        alert.setContentText("Equipo borrado con exito!");
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
     }

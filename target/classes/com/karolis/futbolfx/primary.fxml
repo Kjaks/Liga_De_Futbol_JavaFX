@@ -80,7 +80,7 @@
       <MenuButton mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
         <items>
           <MenuItem mnemonicParsing="false" text="Ordenar de mayor a menor" onAction="#sortTable"/>
-          <MenuItem mnemonicParsing="false" text="Borrar Equipo" />
+          <MenuItem mnemonicParsing="false" text="Borrar Equipo" onAction="#deleteTeam"/>
             <MenuItem mnemonicParsing="false" text="Modificar Equipo" />
         </items>
          <GridPane.margin>
