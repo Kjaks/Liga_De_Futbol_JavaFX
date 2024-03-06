@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.karolis.futbolfx.searchTeamController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.karolis.futbolfx.modifyController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="232.0" text="MODIFICAR EQUIPO" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Nombre del equipo" textAlignment="CENTER" />
-      <Label fx:id="oldName" />
-      <TextField fx:id="teamName" />
+      <Label fx:id="oldName" text="Nombre anterior: " />
+      <TextField fx:id="newTeamName" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Jugados" textAlignment="CENTER" />
-      <Label fx:id="oldPlayed" />
-      <TextField fx:id="playedMatches" />
+      <Label fx:id="oldPlayed" text="Jugados anteriores: " />
+      <TextField fx:id="newPlayedMatches" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Ganados" textAlignment="CENTER" />
-      <Label fx:id="oldWins" />
-      <TextField fx:id="winnedMatches" />
+      <Label fx:id="oldWins" text="Ganados anteriores:" />
+      <TextField fx:id="newWinnedMatches" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="132.0" text="Partidos Empatados" textAlignment="CENTER" />
-      <Label fx:id="oldDraw" />
-      <TextField fx:id="drawMatches" />
-        <Button text="Modificar" />
+      <Label fx:id="oldDraw" text="Empatados anteriores:" />
+      <TextField fx:id="newDrawMatches" />
+        <Button onAction="#modifyFormButton" text="Modificar" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

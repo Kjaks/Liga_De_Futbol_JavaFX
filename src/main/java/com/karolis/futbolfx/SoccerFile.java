@@ -180,7 +180,7 @@ class SoccerFile {
                 String linea = null;
                 while ((linea = br.readLine()) != null) {
                     if (numLinea == pos) {     // pos es la línea que queremos modificar
-                         newFile.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + "\n");       
+                         newFile.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + ";\n");       
                     }
                     else {
                         newFile.write(linea + "\n");

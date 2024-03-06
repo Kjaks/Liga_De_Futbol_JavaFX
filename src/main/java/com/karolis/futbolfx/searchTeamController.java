@@ -1,15 +1,11 @@
 package com.karolis.futbolfx;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,14 +13,11 @@ import javafx.stage.Stage;
  *
  * @author kjaks
  */
-public class searchTeamController implements Initializable{
+public class searchTeamController {
     SoccerFile dataFile = new SoccerFile();
     
     @FXML
     private TextField SearchTeamName, selectTeamName;
-    
-    @FXML
-    private Label oldName, oldPlayed, oldWins, oldDraw;
     
     private static String[] team;
     private static String name, teamText;
@@ -89,6 +82,7 @@ public class searchTeamController implements Initializable{
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
     } else {
+                 team = teamText.split(";");
         // Obtener el Stage de la ventana actual
         Stage currentStage = (Stage) selectTeamName.getScene().getWindow();
 
@@ -111,15 +105,8 @@ public class searchTeamController implements Initializable{
     } 
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        if(this.oldName != null){
-         team = teamText.split(";");
-
-        oldName.setText("Nombre anterior: " + team[0]) ;
-        oldPlayed.setText("Partidos jugados anteriores: " + team[1]); 
-        oldWins.setText("Partidos Ganados anteriores: " + team[2]);
-        oldDraw.setText("Partidos empatados anteriores: " + team[3]);
-        }
+    public String[] getTeam(){
+        return team;
     }
+    
 }
