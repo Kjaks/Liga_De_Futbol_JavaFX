@@ -147,6 +147,23 @@ public class PrimaryController {
         stage.show();
     }
     
+    @FXML
+    private void selectTeam() throws IOException{
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("selectTeam.fxml"));
+        Parent root = loader.load();
+        
+        // Crear la escena
+        Scene scene = new Scene(root);
+        
+        // Obtener el escenario principal
+        Stage stage = new Stage();
+        
+        // Establecer la escena en el escenario principal y mostrarlo
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     public void clearData() {
     data.clear();
     }

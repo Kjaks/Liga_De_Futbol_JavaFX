@@ -81,7 +81,7 @@
         <items>
           <MenuItem mnemonicParsing="false" text="Ordenar de mayor a menor" onAction="#sortTable"/>
           <MenuItem mnemonicParsing="false" text="Borrar Equipo" onAction="#deleteTeam"/>
-            <MenuItem mnemonicParsing="false" text="Modificar Equipo" />
+            <MenuItem mnemonicParsing="false" text="Modificar Equipo" onAction="#selectTeam"/>
         </items>
          <GridPane.margin>
             <Insets bottom="3.0" right="40.0" />
