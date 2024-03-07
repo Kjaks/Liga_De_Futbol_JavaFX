@@ -46,21 +46,24 @@ public class modifyController implements Initializable{
 
     @FXML
     private void modifyFormButton(){
-       boolean insert = false;
-        
+       int result = -1;
+       boolean nuevo = false;
+      
       // Nombre del equipo
       name = newTeamName.getText();
-      if (name.equals("")) name = oldTeam[0];   // No cambiamos los datos antiguos
+      if (name.equals("")) name = oldTeam[0];
+      else{
+          nuevo = true;
+      }
       
       // Partidos jugados
       input = newPlayedMatches.getText();
       if (input.equals("")) {
           pM = Integer.parseInt(oldTeam[1]);
-          insert = true;
       }  // No cambiamos los datos antiguos
       else  {
           pM= Integer.parseInt(input);
-          insert = true;
+          nuevo = true;
       }
 
       // Partidos ganados (no pueden ser más que los partidos jugados)
@@ -68,71 +71,73 @@ public class modifyController implements Initializable{
         
         if (input.equals("")) {
             wM = Integer.parseInt(oldTeam[2]);
-             insert = true;
         }
         else if(Integer.parseInt(input) < 1){
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Los partidos ganados no pueden ser menor que 1!");
+        wM = Integer.parseInt(oldTeam[2]);
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
-        else if (wM >pM){
+        else if ( Integer.parseInt(input) >pM){
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Los partidos ganados no pueden ser mas que los partidos jugados!");
+        wM = Integer.parseInt(oldTeam[2]);
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else {
+            System.out.println("PARTIDOS JUGADOS: " + pM);
             wM = Integer.parseInt(input);
-            insert = true;
+            nuevo = true;
         }
       
       // Partidos empatados (no pueden ser más que los partidos jugados menos los ganados)
         input = newDrawMatches.getText();
         if (input.equals("")) {
             dM = Integer.parseInt(oldTeam[3]);
-            insert = true;
         }
         else if(Integer.parseInt(input) < 1){
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Los partidos empatados no pueden ser menor que 1!");
+        dM = Integer.parseInt(oldTeam[3]);
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
-        else if (dM > (wM - pM)){
+        else if (Integer.parseInt(input) > (wM - pM)){
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Los partidos Empatados no pueden ser mayores que los partidos ganados menos los jugados!");
+        dM = Integer.parseInt(oldTeam[3]);
         // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else {
             dM = Integer.parseInt(input);
-            insert = true;
+            nuevo = true;
         }
 
       // Partidos perdidos (no se preguntan sino que se calculan)
-      lM = pM - wM - dM;
+      lM = pM - (wM + dM);
       
       // Puntos. Se calcula como partGanados * 3 + partEmpatados
       pts = wM * 3 + dM;
 
       // Enviamos los datos nuevos para que se escriban en el fichero
-      if(insert) {
-          int result = dataFile.update(dataFile.getPos(oldTeam[0]), name, pM, wM, dM, lM, pts);
-      }
+      result = dataFile.update(dataFile.getPos(oldTeam[0]), name, pM, wM, dM, lM, pts);
+      Stage currentStage = (Stage) newTeamName.getScene().getWindow();
       if (result == -1) {
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Ha ocurrido un error al actualizar el fichero!");
         // Mostrar la alerta como un pop-up
-        alert.showAndWait();      }
-      else {
-         Stage currentStage = (Stage) newTeamName.getScene().getWindow();
-
+        alert.showAndWait();      
+         currentStage.close();
+      }
+      else if (nuevo){
         alert.setTitle("INFO");
         alert.setHeaderText(null);
         alert.setContentText("Datos actualizados con exito!");
@@ -141,10 +146,6 @@ public class modifyController implements Initializable{
         alert.showAndWait();      
          currentStage.close();
 
-      }
-
-      
-      
+      }      
     }    
-
 }

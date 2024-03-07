@@ -1,4 +1,15 @@
-Atlético de Madrid;20;12;6;2;42;
+Villarreal CF;20;8;11;1;35;
+Real Madrid;20;14;4;2;46;
+Levante UD;30;20;7;3;67;
+Real Sociedad;20;9;8;3;35;
 Cádiz CF;20;6;8;6;26;
-Levante;20;7;7;6;28;
+Granada CF;20;6;5;9;23;
+Atlético de Madrid;20;12;6;2;42;
+Valencia CF;20;7;8;5;29;
+Getafe CF;20;6;7;7;25;
+FC Barcelona;20;15;3;2;48;
+Real Betis;20;10;4;6;34;
+SD Eibar;20;4;6;10;18;
 SD Huesca;20;1;12;7;15;
+Sevilla FC;20;10;6;4;36;
+Athletic Club;20;7;10;3;31;
