@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App is the main class of the application. It extends Application, which is the base class for JavaFX applications.
  * This class starts the application and manages scenes.
+ * @author kjaks
  */
 public class App extends Application {
 

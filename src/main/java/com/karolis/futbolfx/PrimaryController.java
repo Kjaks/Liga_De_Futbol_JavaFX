@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 /**
  * Controller class for the primary view.
+ * @author kjaks
  */
 public class PrimaryController {
     private static PrimaryController instance;

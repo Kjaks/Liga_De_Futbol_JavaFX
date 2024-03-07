@@ -1,35 +1,36 @@
 package com.karolis.futbolfx;
 /** 
- * Clase FicheroFutbol
+ * SoccerFile Class
  * 
- * Esta clase contiene el interfaz con el fichero de datos, es decir, todas las rutinas
- * para leer y escribir datos del fichero. No produce ninguna salida por consola.
+ * This class contains the logic with the data file, that is, all the routines
+ * for reading and writing data from the file. It doesn't produce any console output.
  */
 
 import java.io.*;
 
 class SoccerFile {
 
-    private final String NOMBRE_FICH_DATOS = "liga.txt";  // Nombre del fichero de datos
-    public final int MAX_EQUIPOS = 20;                    // Número máximo de equipos en la liga
+    private final String NOMBRE_FICH_DATOS = "liga.txt";  // Name of the data file
+    public final int MAX_EQUIPOS = 20;                    // Max number of teams in the file
 
     /**
-     * Añade un equipo en al fichero de datos.
-     * TODO: comprobar que nunca se guarden más de 20 equipos en el fichero.
-     * 
-     * @param nombreEq Nombre del equipo
-     * @param partJug Partidos jugados
-     * @param partGan Partidos ganados
-     * @param partEmp Partidos empatados
-     * @param partPer Partidos perdidos
-     * @param puntos Puntos del equipo
-     * 
-     * @return Devuelve 0 si todo va bien o -1 en caso de error.
+     * Adds a team to the data file.
+     * TODO: Check that no more than 20 teams are ever saved in the file.
+     *
+     * @param nombreEq Name of the team
+     * @param partJug Played matches
+     * @param partGan Won matches
+     * @param partEmp Drawn matches
+     * @param partPer Lost matches
+     * @param puntos Team points
+     *
+     * @return Returns 0 if everything goes well or -1 in case of error.
      */
+
     public int save(String nombreEq, int partJug, int partGan, int partEmp, int partPer, int puntos) {
         int resultado;
         try {
-            FileWriter f = new FileWriter(NOMBRE_FICH_DATOS, true);  // Poniendo "true" añade datos al final
+            FileWriter f = new FileWriter(NOMBRE_FICH_DATOS, true);  // The true is for appending the team to the file
             f.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + ";\n");
             f.close();
             resultado = 0;
@@ -41,14 +42,14 @@ class SoccerFile {
         return resultado;
     }
 
-    /**
-     * Devuelve todo el contenido del fichero de datos como un array de Strings
-     * (una fila del fichero en cada posición del array)
-     * 
-     * @return Un array de Strings con el contenido del fichero de datos
-     */
+        /**
+         * Returns all the content of the data file as an array of Strings
+         * (one row of the file in each position of the array)
+         *
+         * @return An array of Strings with the content of the data file
+         */
     public String[] getAll() {
-        String[] datos = new String[MAX_EQUIPOS];   // MAX_EQUIPOS es el máximo de equipos que podemos tener en el fichero
+        String[] datos = new String[MAX_EQUIPOS];   // MAX_EQUIPOS is the max number of teams we can inserte in the data file
         try {
             FileReader f = new FileReader(NOMBRE_FICH_DATOS);
             BufferedReader br = new BufferedReader(f);
@@ -67,8 +68,8 @@ class SoccerFile {
     }
 
     /**
-     * Busca un equipo en el fichero a partir de su nombre.
-     * @return null si no lo encuentra o un string con la línea del fichero si lo encuentra.
+     * Searches for a team in the file based on its name.
+     * @return null if not found or a string with the file line if found.
      */
     public String get(String nombreEq) {
         String linea = null;
@@ -93,9 +94,9 @@ class SoccerFile {
     }
 
     /**
-     * Busca un equipo en el fichero a partir de su nombre y devuelve su posición en el fichero.
-     * @return La posición (fila) del equipo en el fichero de datos (si lo encuentra) o -1 el equipo no existe.
-     */ 
+     * Searches for a team in the file based on its name and returns its position in the file.
+     * @return The position (row) of the team in the data file (if found) or -1 if the team does not exist.
+     */
     public int getPos(String nombreEq) {
         String linea = null;
         int posicion = -1;
@@ -120,29 +121,29 @@ class SoccerFile {
     }
 
     /**
-     * Elimina un equipo del fichero a partir de su nombre.
-     * @param nombreEq Nombre del equipo buscado para borrar.
-     * @return 0 si el borrado termina con éxito o -1 en caso de error.
-     */ 
+     * Deletes a team from the file based on its name.
+     * @param nombreEq Name of the team to be deleted.
+     * @return 0 if deletion is successful or -1 in case of error.
+     */
     public int delete(String nombreEq) {
-        int result = -1;              // Resultado del borrado
-        int pos = getPos(nombreEq);   // Obtenemos la posición del equipo en el fichero
+        int result = -1;              // Result of the erasing
+        int pos = getPos(nombreEq);   // We get the position of the team in the data file
         if (pos != -1) {
             try {
-                // Vamos a copiar liga.txt en un fichero temporal (llamado temp), excepto la fila que queremos borrar
+                // We are going to copy liga.txt to a temporary file (named temp), except for the row we want to delete
                 File fSource = new File(NOMBRE_FICH_DATOS);
                 File fDest = new File("temp");
-                BufferedReader br = new BufferedReader(new FileReader(fSource)); // Abrimos liga.txt para lectura
-                FileWriter newFile = new FileWriter(fDest);                        // Creamos un fichero temporal
-                int numLinea = 0;         // Contador del número de líneas
+                BufferedReader br = new BufferedReader(new FileReader(fSource)); // Open liga.txt for reading
+                FileWriter newFile = new FileWriter(fDest); // Create a temporary file
+                int numLinea = 0; // Counter for the number of lines
                 String linea = null;
                 while ((linea = br.readLine()) != null) {
-                    if (numLinea != pos) {     // pos es la línea que no queremos copiar al nuevo fichero
+                    if (numLinea != pos) { // pos is the line we do not want to copy to the new file
                         newFile.write(linea + "\n");
                     }
                     numLinea++;
                 }
-                // Borramos el viejo fichero liga.txt y renombramos temp para que se llame liga.txt
+                // Delete the old file liga.txt and rename temp to be called liga.txt
                 br.close();
                 newFile.close();
                 fSource.delete();
@@ -157,95 +158,90 @@ class SoccerFile {
         return result;
     }
 
-    /**
-     * Actualiza un equipo en el fichero de datos.
-     * @param pos Posición del equipo en el fichero de datos
-     * @param nombreEq Nombre del equipo
-     * @param partJug Partidos jugados
-     * @param partGan Partidos ganados
-     * @param partEmp Partidos empatados
-     * @param partPer Partidos perdidos
-     * @param puntos Puntos del equipo
-     * @return 0 si la actualización finaliza con éxito 0 -1 en caso de error
-     */ 
-    public int update(int pos, String nombreEq, int partJug, int partGan, int partEmp, int partPer, int puntos) {
-        int result = -1;              // Resultado del update
-        try {
-                // Vamos a copiar liga.txt en un fichero temporal (llamado temp), cambiando la fila que queremos actualizar
-                File fSource = new File(NOMBRE_FICH_DATOS);
-                File fDest = new File("temp");
-                BufferedReader br = new BufferedReader(new FileReader(fSource));   // Abrimos liga.txt para lectura
-                FileWriter newFile = new FileWriter(fDest);                        // Creamos un fichero temporal
-                int numLinea = 0;         // Contador del número de líneas
-                String linea = null;
-                while ((linea = br.readLine()) != null) {
-                    if (numLinea == pos) {     // pos es la línea que queremos modificar
-                         newFile.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + ";\n");       
+        /**
+         * Updates a team in the data file.
+         * @param pos Position of the team in the data file
+         * @param nombreEq Name of the team
+         * @param partJug Played matches
+         * @param partGan Won matches
+         * @param partEmp Drawn matches
+         * @param partPer Lost matches
+         * @param puntos Team points
+         * @return 0 if the update finishes successfully or -1 in case of error
+         */
+            public int update(int pos, String nombreEq, int partJug, int partGan, int partEmp, int partPer, int puntos) {
+                int result = -1; // Update result
+                try {
+                    // We are going to copy liga.txt to a temporary file (named temp), changing the row we want to update
+                    File fSource = new File(NOMBRE_FICH_DATOS);
+                    File fDest = new File("temp");
+                    BufferedReader br = new BufferedReader(new FileReader(fSource)); // Open liga.txt for reading
+                    FileWriter newFile = new FileWriter(fDest); // Create a temporary file
+                    int numLinea = 0; // Counter for the number of lines
+                    String linea = null;
+                    while ((linea = br.readLine()) != null) {
+                        if (numLinea == pos) { // pos is the line we want to modify
+                            newFile.write(nombreEq + ";" + partJug + ";" + partGan + ";" + partEmp + ";" + partPer + ";" + puntos + ";\n");
+                        } else {
+                            newFile.write(linea + "\n");
+                        }
+                        numLinea++;
                     }
-                    else {
-                        newFile.write(linea + "\n");
-                    }
-                    numLinea++;
+                    // Delete the old file liga.txt and rename temp to be called liga.txt
+                    br.close();
+                    newFile.close();
+                    fSource.delete();
+                    fDest.renameTo(fSource);
+                    result = 0;
+                } catch (Exception e) {
+                    System.err.println("Error reading the data file");
+                    result = -1;
                 }
-                // Borramos el viejo fichero liga.txt y renombramos temp para que se llame liga.txt
-                br.close();
-                newFile.close();
-                fSource.delete();
-                fDest.renameTo(fSource);
-                result = 0;
-        }
-        catch (Exception e) {
-                System.err.println("Error al leer el fichero de datos");
-                result = -1;
-        }
-        return result;
-    }
+                return result;
+            }
 
     /**
-     * Ordena el fichero de datos según el número de puntos (de mayor a menor).
-     * @return  en caso de éxito o -1 si hay algún error
+     * Sorts the data file according to the number of points (from highest to lowest).
+     * @return 0 in case of success or -1 if there is any error
      */
     public int sort() {
         int result = -1;
 
-        // Cargamos todos los datos en un array de Strings
+        // Load all data into a String array
         String datos[] = getAll();
 
-        if (datos == null) {    // No hay datos para ordenar
+        if (datos == null) { // No data to sort
             result = -1;
-        }
-        else {
-            // Creamos un array con los puntos
+        } else {
+            // Create an array with the points
             int puntos[] = new int[MAX_EQUIPOS];
             for (int i = 0; i < datos.length; i++) {
                 if (datos[i] != null) {
                     datos[i] = datos[i].substring(0, datos[i].length() - 1);
                     puntos[i] = Integer.parseInt(datos[i].split(";")[5]);
-                }
-                else {
+                } else {
                     puntos[i] = -1;
                 }
             }
 
-            // Ordenamos el array de puntos con el método de la burbuja.
-            // Cada vez que intercambiemos dos posiciones, intercambiaremos también el array con todos los datos
+            // Sort the points array using the bubble sort method.
+            // Each time we swap two positions, we also swap the array with all the data
             for (int i = 0; i < datos.length; i++) {
-                for (int j = 0; j < datos.length - i - 1; j++) { // corrección aquí
-                    if (puntos[j] < puntos[j+1]) {
-                        // Intercambiamos los puntos
+                for (int j = 0; j < datos.length - i - 1; j++) { // correction here
+                    if (puntos[j] < puntos[j + 1]) {
+                        // Swap points
                         int aux = puntos[j];
-                        puntos[j] = puntos[j+1];
-                        puntos[j+1] = aux;
-                        // Intercambiamos equipos en el array de datos
+                        puntos[j] = puntos[j + 1];
+                        puntos[j + 1] = aux;
+                        // Swap teams in the data array
                         String auxStr = new String(datos[j]);
-                        datos[j] = datos[j+1];
-                        datos[j+1] = auxStr;
+                        datos[j] = datos[j + 1];
+                        datos[j + 1] = auxStr;
                     }
                 }
             }
 
-
-            // Escribimos el array de datos ordenados en liga.txt, sustituyendo los datos antiguos
+            // Write the sorted data array to liga.txt, replacing the old data
             try {
                 FileWriter f = new FileWriter(NOMBRE_FICH_DATOS);
                 for (int i = 0; i < datos.length; i++) {
@@ -255,9 +251,8 @@ class SoccerFile {
                 }
                 result = 0;
                 f.close();
-            }
-            catch (Exception e) {
-                System.err.println("Error al escibir en el fichero");
+            } catch (Exception e) {
+                System.err.println("Error writing to the file");
                 result = -1;
             }
         }

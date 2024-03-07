@@ -10,12 +10,19 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- *
+ * Controller for modifying football team data.
+ * This controller allows the user to modify team data such as name, matches played, won, and drawn.
+ * It also handles displaying alerts in case of errors or successful operation.
+ * 
  * @author kjaks
  */
 public class modifyController implements Initializable{
     private PrimaryController primaryController;
     
+     /**
+     * Sets the primary controller. So we can refresh the table
+     * @param primaryController The main controller of the application.
+     */
     public void setPrimaryController(PrimaryController primaryController) {
         this.primaryController = primaryController;
     }
@@ -34,6 +41,12 @@ public class modifyController implements Initializable{
    @FXML
     private Label oldName, oldPlayed, oldWins, oldDraw;
        
+     /**
+     * Initializes the controller. So we can see the old data in the pop-up
+     * Automatically called after the root object has been loaded.
+     * @param url The location used to resolve relative paths for the root object.
+     * @param rb The resources used to localize the root object.
+     */
        @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(this.oldName != null){
@@ -44,29 +57,35 @@ public class modifyController implements Initializable{
         }
     }
 
+     /**
+     * Handles the click event on the team data modification button.
+     * This method validates the data entered by the user and updates the corresponding team data.
+     * It also shows alerts in case of errors or successful operation.
+     */
     @FXML
     private void modifyFormButton(){
        int result = -1;
        boolean nuevo = false;
+       
       
-      // Nombre del equipo
+      // Team name
       name = newTeamName.getText();
       if (name.equals("")) name = oldTeam[0];
       else{
           nuevo = true;
       }
       
-      // Partidos jugados
+      // Played Matches
       input = newPlayedMatches.getText();
       if (input.equals("")) {
           pM = Integer.parseInt(oldTeam[1]);
-      }  // No cambiamos los datos antiguos
+      } 
       else  {
           pM= Integer.parseInt(input);
           nuevo = true;
       }
 
-      // Partidos ganados (no pueden ser más que los partidos jugados)
+      // Winned matches
         input = newWinnedMatches.getText();
         
         if (input.equals("")) {
@@ -77,7 +96,6 @@ public class modifyController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText("Los partidos ganados no pueden ser menor que 1!");
         wM = Integer.parseInt(oldTeam[2]);
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else if ( Integer.parseInt(input) >pM){
@@ -85,7 +103,6 @@ public class modifyController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText("Los partidos ganados no pueden ser mas que los partidos jugados!");
         wM = Integer.parseInt(oldTeam[2]);
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else {
@@ -94,7 +111,7 @@ public class modifyController implements Initializable{
             nuevo = true;
         }
       
-      // Partidos empatados (no pueden ser más que los partidos jugados menos los ganados)
+        // Draw matches
         input = newDrawMatches.getText();
         if (input.equals("")) {
             dM = Integer.parseInt(oldTeam[3]);
@@ -104,7 +121,6 @@ public class modifyController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText("Los partidos empatados no pueden ser menor que 1!");
         dM = Integer.parseInt(oldTeam[3]);
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else if (Integer.parseInt(input) > (wM - pM)){
@@ -112,7 +128,6 @@ public class modifyController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText("Los partidos Empatados no pueden ser mayores que los partidos ganados menos los jugados!");
         dM = Integer.parseInt(oldTeam[3]);
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();
         }
         else {
@@ -120,20 +135,19 @@ public class modifyController implements Initializable{
             nuevo = true;
         }
 
-      // Partidos perdidos (no se preguntan sino que se calculan)
+      // Lost matches
       lM = pM - (wM + dM);
       
-      // Puntos. Se calcula como partGanados * 3 + partEmpatados
+      // Calculate points
       pts = wM * 3 + dM;
 
-      // Enviamos los datos nuevos para que se escriban en el fichero
+      // Send new data to update the team
       result = dataFile.update(dataFile.getPos(oldTeam[0]), name, pM, wM, dM, lM, pts);
       Stage currentStage = (Stage) newTeamName.getScene().getWindow();
       if (result == -1) {
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("Ha ocurrido un error al actualizar el fichero!");
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();      
          currentStage.close();
       }
@@ -142,7 +156,6 @@ public class modifyController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText("Datos actualizados con exito!");
         PrimaryController.getInstance().refreshTable();
-        // Mostrar la alerta como un pop-up
         alert.showAndWait();      
          currentStage.close();
 
